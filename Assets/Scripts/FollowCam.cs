@@ -20,10 +20,33 @@ public class FollowCam : MonoBehaviour {
     void FixedUpdate()
     {
         // if there's only one line following an if, it doesn't need braces
-        if (POI == null) return; // return if there is no poi // b
+        //if (POI == null) return; // return if there is no poi // b
                                  
         // Get the position of the poi
-        Vector3 destination = POI.transform.position;
+        //Vector3 destination = POI.transform.position;
+
+        Vector3 destination;
+        // If there is no poi, return to P:[ 0, 0, 0 ]
+        if (POI == null)
+        {
+            destination = Vector3.zero;
+        } else {
+            // Get the position of the poi
+            destination = POI.transform.position;
+            // If poi is a Projectile, check to see if it's at rest
+            if (POI.tag == "Projectile")
+            {
+                // if it is sleeping (that is, not moving)
+                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    // return to default view
+                    POI = null;
+                    // in the next update
+                    return;
+                }
+            }
+        }
+
         destination.x = Mathf.Max(minXY.x, destination.x);
         destination.y = Mathf.Max(minXY.y, destination.y);
         // Interpolate from the current Camera position toward destination
