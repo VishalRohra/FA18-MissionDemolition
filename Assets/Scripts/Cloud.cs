@@ -10,7 +10,6 @@ public class Cloud : MonoBehaviour {
 	public Vector3 sphereOffsetScale = new Vector3(5,2,1);
 	public Vector2 sphereScaleRangeX = new Vector2 (4,8);
 	public Vector2 sphereScaleRangeY = new Vector2 (3,4);
-
 	public Vector2 sphereScaleRangeZ = new Vector2 (2, 4);
 	public float scaleYMin = 2f;
 
@@ -46,15 +45,14 @@ public class Cloud : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	//	if (Input.GetKeyDown (KeyCode.Space)) {
-	//		Restart ();
-	//	}
+        //if (Input.GetKeyDown (KeyCode.Space)) {
+        //    Restart ();
+        //}
 	}
-			void Restart () {
-				foreach (GameObject sp in spheres){
-					Destroy(sp);
-				}
-		Start();
-
-}
+	void Restart () {
+		foreach (GameObject sp in spheres) {
+			Destroy(sp);
+		}
+        Start();
+    }
 }
